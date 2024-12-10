@@ -14,7 +14,7 @@ class AuthorController extends Controller
     public function index(){
 
         $data = [
-            'authors' => Author::all(),
+            'authors' => Author::paginate(8),
             'title' => 'Authors'
         ];
 
