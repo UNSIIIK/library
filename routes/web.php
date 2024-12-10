@@ -11,3 +11,5 @@ Route::get('/', function () {
 Route::get('authors', [AuthorController::class, 'index']);
 Route::get('author-new', [AuthorController::class, 'addNewAuthor']);
 Route::post('author-store', [AuthorController::class, 'saveNewAuthor']);
+Route::get('author-edit/{id}', [AuthorController::class, 'editAuthor']);
+Route::post('author-update', [AuthorController::class, 'updateAuthor']);

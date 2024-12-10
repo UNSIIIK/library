@@ -907,35 +907,78 @@
 </head>
 
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-    <h1>{{ $title }}</h1>
-    <a href="/author-new">Add new Author</a>
-    <table class="table-auto">
-        <thead>
-            <th>ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Age</th>
-            <th>Date of birth</th>
-            <th>Place of birth</th>
-            <th></th>
-        </thead>
-        <tbody>
-            @foreach ($authors as $author)
-                <tr>
-                    <td>{{$author->id}}</td>
-                    <td>{{$author->first_name}}</td>
-                    <td>{{$author->last_name}}</td>
-                    <td>{{$author->age}}</td>
-                    <td>{{$author->date_of_birth}}</td>
-                    <td>{{$author->place_of_birth}}</td>
-                    <th>
-                        <a href="/author-edit/{{$author->id}}">Edit</a>
-                    </th>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <h1>Add new Author</h1>
+    <form action="/author-update" method="post">
+        @csrf
+        <input type="hidden" name="id" value="{{$author->id}}">
+        <div class="space-y-12">
 
+            <div class="border-b border-gray-900/10 pb-12">
+                <h2 class="text-base/7 font-semibold text-gray-900">Personal Information</h2>
+
+                <div class="mt-10 grid grid-cols-1 gap-x-12 gap-y-8 sm:grid-cols-12">
+                    <div class="sm:col-span-12">
+                        <label for="first-name" class="block text-sm/6 font-medium text-gray-900">First name</label>
+                        <div class="mt-2">
+                            <input type="text" name="first_name" id="first-name" value="{{$author->first_name}}" autocomplete="given-name"
+                                class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="mt-10 grid grid-cols-1 gap-x-12 gap-y-8 sm:grid-cols-12">
+                    <div class="sm:col-span-12">
+                        <label for="first-name" class="block text-sm/6 font-medium text-gray-900">Last name</label>
+                        <div class="mt-2">
+                            <input type="text" name="last_name" id="first-name" value="{{$author->last_name}}" autocomplete="given-name"
+                                class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="mt-10 grid grid-cols-1 gap-x-12 gap-y-8 sm:grid-cols-12">
+                    <div class="sm:col-span-12">
+                        <label for="first-name" class="block text-sm/6 font-medium text-gray-900">Age</label>
+                        <div class="mt-2">
+                            <input type="number" readonly step="1" value="{{$author->age}}" autocomplete="given-name"
+                                class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="mt-10 grid grid-cols-1 gap-x-12 gap-y-8 sm:grid-cols-12">
+                    <div class="sm:col-span-12">
+                        <label for="first-name" class="block text-sm/6 font-medium text-gray-900">Dae of birth</label>
+                        <div class="mt-2">
+                            <input type="date" name="date_of_birth" value="{{$author->date_of_birth}}"  autocomplete="given-name"
+                                class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="mt-10 grid grid-cols-1 gap-x-12 gap-y-8 sm:grid-cols-12">
+                    <div class="sm:col-span-12">
+                        <label for="first-name" class="block text-sm/6 font-medium text-gray-900">Place of birth</label>
+                        <div class="mt-2">
+                            <input type="text" name="place_of_birth" value="{{$author->place_of_birth}}" autocomplete="given-name"
+                                class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+        <div class="mt-6 flex items-center justify-end gap-x-6">
+            <button type="submit">Save</button>
+        </div>
+    </form>
 </body>
 
 </html>
