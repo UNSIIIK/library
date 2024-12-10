@@ -908,6 +908,34 @@
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
     <h1>{{ $title }}</h1>
     <a href="/author-new">Add new Author</a>
+    <form action="/authors" method="get">
+        <div>
+            <label for="first_name">First Name</label>
+            <input type="text" name="first_name" id="">
+        </div>
+
+        <div>
+            <label for="last_name">Last Name</label>
+            <input type="text" name="last_name" id="">
+        </div>
+
+        <div>
+            <label for="from_age">From Age</label>
+            <input type="number" name="from_age" id="">
+        </div>
+
+        <div>
+            <label for="to_age">To Age</label>
+            <input type="number" name="to_age" id="">
+        </div>
+
+        <div>
+            <label for="place_of_birth">Place of Birth</label>
+            <input type="text" name="place_of_birth" id="">
+        </div>
+
+        <button type="submit">Filter</button>
+    </form>
     <table class="table-auto">
         <thead>
             <th>ID</th>

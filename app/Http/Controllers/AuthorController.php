@@ -11,10 +11,32 @@ use Illuminate\Support\Facades\Log;
 class AuthorController extends Controller
 {
 
-    public function index(){
+    public function index(Request $request){
+        $input = $request->input();
+        $authors = Author::latest();
+
+        if(isset($input['first_name']) && $input['first_name']){
+            $authors->where('first_name', $input['first_name']);
+        }
+
+        if(isset($input['last_name']) && $input['last_name']){
+            $authors->where('last_name', $input['last_name']);
+        }
+        if(isset($input['place_of_birth']) && $input['place_of_birth']){
+            $authors->where('place_of_birth','like', $input['place_of_birth'].'%');
+        }
+
+        if(isset($input['from_age']) && $input['from_age']){
+            $authors->where('age','>=',$input['from_age']);
+        }
+
+        if(isset($input['to_age']) && $input['to_age']){
+            $authors->where('age','<=',$input['to_age']);
+        }
+
 
         $data = [
-            'authors' => Author::paginate(8),
+            'authors' => $authors->paginate(8),
             'title' => 'Authors'
         ];
 
