@@ -8,4 +8,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/authors', [AuthorController::class, 'index']);
+Route::get('authors', [AuthorController::class, 'index']);
+Route::get('author-new', [AuthorController::class, 'addNewAuthor']);
+Route::post('author-store', [AuthorController::class, 'saveNewAuthor']);

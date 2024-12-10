@@ -2,64 +2,48 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SavenewAuthorRequest;
 use App\Models\Author;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class AuthorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+
+    public function index(){
+
+        $data = [
+            'authors' => Author::all(),
+            'title' => 'Authors'
+        ];
+
+        return view('author.index', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function addNewAuthor(){
+        return view('author.new_author');
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    public function saveNewAuthor(SavenewAuthorRequest $request){
+        $input = $request->input();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Author $author)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Author $author)
-    {
-        //
-    }
+        $authorData = [
+            'first_name' => $input['first_name'],
+            'last_name'=> $input['last_name'],
+            'age' => $input['age'],
+            'date_of_birth'=> $input['date_of_birth'],
+        ];
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Author $author)
-    {
-        //
-    }
+        if($input['place_of_birth']){
+            $authorData['place_of_birth'] = $input['place_of_birth'];
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Author $author)
-    {
-        //
+        Author::create($authorData);
+
+
+        return redirect('/authors');
+
     }
 }
